@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="GamePlay.css" />
+    <title>Family Feud : Multi-Player</title>
+  </head>
+  <body>
+    <!-- Start Screen -->
+    <div class="w3-sidebar" style="display: none;" id="SelectPlayer">
+      <br />
+      <br />
+      <h1>FAMILY FEUD : MULTIPLAYER</h1>
+      <br />
+      <br />
+      <h2>PLAYER 2 USERNAME</h2>
+      <input id="userInput" />
+      <button id="submit">SUBMIT</button>
+      <br />
+      <br />
+      <h2 id="choose" style="display: none;">CHOOSE WHO STARTS ROUND</h2>
+      <br />
+      <br />
+      <button style="display: none;" id="player_1"></button>
+      <button style="display: none;" id="player_2"></button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <button style="display: none;" id="START">START ROUND</button>
+    </div>
+    <div class="Background_1">
+      <!-- Game Wheel -->
+      <div class="BackBoard">
+        <div class="Outline Nleft"></div>
+        <div class="Outline Nright"></div>
+        <div class="_gameBoard">
+          <div class="gameBoard"></div>
+          <!-- Question Container -->
+          <div id="Question" class="QuestionBoard"></div>
+          <!-- Timer -->
+          <div class="container">
+            <h3></h3>
+          </div>
+          <!-- Username -->
+          <div id="Username" class="username"></div>
+          <!-- Round Points -->
+          <h1 id="points" class="points">0</h1>
+          <!-- Username -->
+          <div id="Username_2" class="username_2"></div>
+          <!-- Round Points -->
+          <h1 id="points_2" class="points_2">0</h1>
+          <div class="familyFeudCard _right"></div>
+          <div class="familyFeudCard _left"></div>
+          <!-- Family Feud cards-->
+          <img class="top" src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg" />
+          <img class="left" src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg" />
+          <img class="right" src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg" />
+          <div class="BackCard"></div>
+          <div id="answerCard" class="answerCard">
+            <!-- Answercards (Front + Back) -->
+            <section class="flipping">
+              <div class="scene">
+                <div class="card _card">
+                  <div class="answercard card__face--front _1"></div>
+                  <div class="numbercard _1--">1</div>
+                  <div
+                    id="back_1"
+                    class="answercard card__face--back _1_"
+                  ></div>
+                  <div id="back_1_" class="pointscard _1-"></div>
+                </div>
+                <br />
+                <div class="card2">
+                  <div class="answercard2 card__face--front2 _2"></div>
+                  <div class="numbercard2 _2--">2</div>
+                  <div
+                    id="back_2"
+                    class="answercard2 card__face--back2 _2_"
+                  ></div>
+                  <div id="back_2_" class="pointscard2 _2-"></div>
+                </div>
+                <br />
+                <div class="card3">
+                  <div class="answercard3 card__face--front3 _3"></div>
+                  <div class="numbercard3 _3--">3</div>
+                  <div
+                    id="back_3"
+                    class="answercard3 card__face--back3 _3_"
+                  ></div>
+                  <div id="back_3_" class="pointscard3 _3-"></div>
+                </div>
+                <br />
+                <div class="card4">
+                  <div class="answercard4 card__face--front4 _4"></div>
+                  <div class="answercard4 card__face--back4 _4_"></div>
+                </div>
+              </div>
+              <br />
+              <div class="scene2">
+                <div class="card5">
+                  <div class="answercard5 card__face--front5 _5"></div>
+                  <div class="numbercard5 _5--">4</div>
+                  <div
+                    id="back_5"
+                    class="answercard5 card__face--back5 _5_"
+                  ></div>
+                  <div id="back_5_" class="pointscard5 _5-"></div>
+                </div>
+                <br />
+                <div class="card6">
+                  <div class="answercard6 card__face--front6 _6"></div>
+                  <div class="numbercard6 _6--">5</div>
+                  <div
+                    id="back_6"
+                    class="answercard6 card__face--back6 _6_"
+                  ></div>
+                  <div id="back_6_" class="pointscard6 _6-"></div>
+                </div>
+                <br />
+                <div class="card7">
+                  <div class="answercard7 card__face--front7 _7"></div>
+                  <div class="answercard7 card__face--back7 _7_"></div>
+                </div>
+                <br />
+                <div class="card8">
+                  <div class="answercard8 card__face--front8 _8"></div>
+                  <div class="answercard8 card__face--back8 _8_"></div>
+                </div>
+              </div>
+              <br />
+            </section>
+            <!-- Incorrect Answer Cross -->
+            <div id="wrongAnswer" class="box" style="display: none;">
+              <div class="cross"></div>
+            </div>
+            <!-- Warning Player 2 -->
+            <div id="warning_2" class="OneMoment V3" style="display: none;">
+              <h1>-- WARNING --</h1>
+            </div>
+            <div id="steal_2" class="OneMoment V4" style="display: none;"></div>
+            <!-- Warning Player 1 -->
+            <div id="warning" class="OneMoment V1" style="display: none;">
+              <h1>-- WARNING --</h1>
+            </div>
+            <div id="steal" class="OneMoment V2" style="display: none;"></div>
+            <!-- Minus Points ( Player 1 ) -->
+            <div id="-5Points" style="display: none;" class="minus">-5</div>
+            <!-- Input Answers ( Player 1 ) -->
+            <div id="Input" class="Border">
+              <input id="search" />
+              <button id="Btn">Search</button>
+            </div>
+            <!-- Minus Points ( Player 2 ) -->
+            <div id="-5Points_2" style="display: none;" class="minus_2">-5</div>
+            <!-- Input Answers ( Player 2 ) -->
+            <div id="Input_2" class="Border_2">
+              <input id="search_2" />
+              <button id="Btn_2">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Result Window -->
+    <div class="w3-sidebar" style="display: none;" id="mySidebar">
+      <br />
+      <br />
+      <h1>ROUND RESULTS</h1>
+      <br />
+      <br />
+      <h2 style="display: inline-block;" id="RoundResults_1">0</h2>
+      <h2 style="display: inline-block;">
+        : ROUND 1 :
+      </h2>
+      <h2 style="display: inline-block;" id="RoundResults_1#2">0</h2>
+      <br />
+      <h2 style="display: inline-block;" id="RoundResults_2">0</h2>
+      <h2 style="display: inline-block;">
+        : ROUND 2 :
+      </h2>
+      <h2 style="display: inline-block;" id="RoundResults_2#2">0</h2>
+      <br />
+      <h2 style="display: inline-block;" id="RoundResults_3">0</h2>
+      <h2 style="display: inline-block;">
+        : ROUND 3 :
+      </h2>
+      <h2 style="display: inline-block;" id="RoundResults_3#2">0</h2>
+      <br />
+      <h1 style="display: inline-block;" id="Results">0</h1>
+      <h1 style="display: inline-block;">
+        : TOTAL SCORES :
+      </h1>
+      <h1 style="display: inline-block;" id="Results#2">0</h1>
+      <br />
+      <br />
+      <h1 class="OneMoment" id="OneMoment">
+        -- WAIT ONE MOMENT PLEASE --
+      </h1>
+      <button id="NEXT">
+        <a href="#" id="LAST_ROUND">NEXT ROUND</a>
+      </button>
+      <button id="END" style="display: none;">
+        <a href="/index.html" id="END_ROUND">END GAME</a>
+      </button>
+    </div>
+  </body>
+  <script type="module">
+    // Retrieving the Username via local storage
+    const user = JSON.parse(localStorage.getItem("myObject"));
+
+    document.getElementById("Username").innerHTML = user;
+    console.log(user);
+
+    document.getElementById("submit").onclick = function () {
+      var user_2 = document.getElementById("userInput").value;
+      document.getElementById("player_1").innerHTML = user;
+      document.getElementById("player_2").innerHTML = user_2;
+      document.getElementById("Username_2").innerHTML = user_2;
+      document.getElementById("choose").style.display = "initial";
+      document.getElementById("player_1").style.display = "initial";
+      document.getElementById("player_2").style.display = "initial";
+      document.getElementById("player_2").onclick = function () {
+        document.getElementById("player_1").style.display = "none";
+        document.getElementById("START").style.display = "initial";
+      };
+      document.getElementById("player_1").onclick = function () {
+        document.getElementById("player_2").style.display = "none";
+        document.getElementById("START").style.display = "initial";
+        player += 1;
+      };
+      document.getElementById("START").onclick = function () {
+        GetAllDataOnce();
+        document.getElementById("SelectPlayer").style.display = "none";
+      };
+    };
+
+    // Importing Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDAtnJ5-d2crqMxannr5Y2zz0Ix6Gm7XTI",
+      authDomain: "familyfeud-94e54.firebaseapp.com",
+      databaseURL: "https://familyfeud-94e54-default-rtdb.firebaseio.com",
+      projectId: "familyfeud-94e54",
+      storageBucket: "familyfeud-94e54.appspot.com",
+      messagingSenderId: "340874094709",
+      appId: "1:340874094709:web:9b70b0b016cfb4e12b303c"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {
+      getDatabase,
+      ref,
+      child,
+      onValue,
+      get,
+      set,
+      update
+    } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+    const db = getDatabase();
+
+    // Defining Variables + Lists
+    var question = [];
+    var userData = [0, 0, 0, 0, 0, 0, 0];
+    var userData_M2 = [];
+    var userData_M3 = [];
+    var flip = [];
+    var round = 0;
+    var attemps = 0;
+    var score = 0;
+    var score_2 = 0;
+    var wrong = 0;
+    let test = 0;
+    var totalScore = 0;
+    var totalWrong = 0;
+    var avg_score = 0;
+    var totalRight = 0;
+    var player = 0;
+    var q_div = document.getElementById("Question");
+    var answer_div_1 = document.getElementById("back_1");
+    var answer_div_2 = document.getElementById("back_2");
+    var answer_div_3 = document.getElementById("back_3");
+    var answer_div_4 = document.getElementById("back_5");
+    var answer_div_5 = document.getElementById("back_6");
+    var points_div_1 = document.getElementById("back_1_");
+    var points_div_2 = document.getElementById("back_2_");
+    var points_div_3 = document.getElementById("back_3_");
+    var points_div_4 = document.getElementById("back_5_");
+    var points_div_5 = document.getElementById("back_6_");
+    var pointsContainer = document.getElementById("points");
+    var pointsContainer_2 = document.getElementById("points_2");
+    var RoundContainer_1 = document.getElementById("RoundResults_1");
+    var RoundContainer_2 = document.getElementById("RoundResults_2");
+    var RoundContainer_3 = document.getElementById("RoundResults_3");
+    var TotalContainer = document.getElementById("Results");
+    var _RoundContainer_1 = document.getElementById("RoundResults_1#2");
+    var _RoundContainer_2 = document.getElementById("RoundResults_2#2");
+    var _RoundContainer_3 = document.getElementById("RoundResults_3#2");
+    var _TotalContainer = document.getElementById("Results#2");
+
+    // Main Function
+    function GetAllDataOnce() {
+      document.getElementById("search_2").disabled = false;
+      document.getElementById("search_2").disabled;
+      document.getElementById("Btn_2").disabled = false;
+      document.getElementById("Btn_2").disabled;
+      document.getElementById("search").disabled = false;
+      document.getElementById("search").disabled;
+      document.getElementById("Btn").disabled = false;
+      document.getElementById("Btn").disabled;
+      round += 1;
+      var random = Math.floor(Math.random() * 50) + 0;
+      const dbRef = ref(db);
+      // Empty Lists
+      var answers = [];
+      var points = [];
+      // Retrieving Previous User Data
+      get(child(dbRef, "Users/" + user + "/Mode 2")).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          userData.push(childSnapshot.val());
+        });
+      });
+      get(child(dbRef, "Users/" + user + "/Mode 1")).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          userData_M2.push(childSnapshot.val());
+        });
+      });
+      get(child(dbRef, "Users/" + user + "/Mode 3")).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          userData_M3.push(childSnapshot.val());
+        });
+      });
+      // Retrieving Questions + Answers
+      get(child(dbRef, "Questions")).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          question.push(childSnapshot.key);
+        });
+        console.log(question[random]);
+        q_div.innerHTML = question[random];
+        get(child(dbRef, "Questions/" + question[random])).then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            points.push(childSnapshot.val());
+            answers.push(childSnapshot.key);
+          });
+          // Sorting Answers Numerically
+          for (var i = 0; i < points.length; i++) {
+            for (var j = 0; j < points.length - i - 1; j++) {
+              if (points[j] < points[j + 1]) {
+                var tempValue = points[j];
+                points[j] = points[j + 1];
+                points[j + 1] = tempValue;
+                var tempValue_1 = answers[j];
+                answers[j] = answers[j + 1];
+                answers[j + 1] = tempValue_1;
+              }
+            }
+          }
+          console.log(answers, points);
+          // Adding Answers + Points to HTML
+          answer_div_1.innerHTML = answers[0].toUpperCase();
+          answer_div_2.innerHTML = answers[1].toUpperCase();
+          answer_div_3.innerHTML = answers[2].toUpperCase();
+          answer_div_4.innerHTML = answers[3].toUpperCase();
+          answer_div_5.innerHTML = answers[4].toUpperCase();
+          points_div_1.innerHTML = points[0];
+          points_div_2.innerHTML = points[1];
+          points_div_3.innerHTML = points[2];
+          points_div_4.innerHTML = points[3];
+          points_div_5.innerHTML = points[4];
+
+          var score = 0;
+          var score_2 = 0;
+
+          pointsContainer.innerHTML = score;
+
+          if (player == 1) {
+            var totalpoints = points.reduce(
+              (partialSum, a) => partialSum + a,
+              0
+            );
+            document.getElementById("search_2").disabled = true;
+            document.getElementById("search_2").disabled;
+            document.getElementById("Btn_2").disabled = true;
+            document.getElementById("Btn_2").disabled;
+            var Search = document.getElementById("search");
+            document.getElementById("Btn").onclick = function () {
+              SearchDiv();
+            };
+            var Search_2 = document.getElementById("search_2");
+            // Input Function
+            function SearchDiv() {
+              attemps += 1;
+              console.log("Attemps :", attemps);
+              if (Search.value.toUpperCase() == answers[0].toUpperCase()) {
+                score += points[0];
+                totalScore += points[0];
+                totalRight += 1;
+                var card = document.querySelector(".card");
+                card.classList.toggle("is-flipped");
+                points[0] = 0;
+                answers[0] = "null";
+                flip[0] = "null";
+                console.log("Score :", score);
+                Search.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search.value.toUpperCase() == answers[1].toUpperCase()
+              ) {
+                score += points[1];
+                totalScore += points[1];
+                totalRight += 1;
+                var card2 = document.querySelector(".card2");
+                card2.classList.toggle("is-flipped");
+                points[1] = 0;
+                answers[1] = "null";
+                flip[1] = "null";
+                console.log("Score :", score);
+                Search.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search.value.toUpperCase() == answers[2].toUpperCase()
+              ) {
+                score += points[2];
+                totalScore += points[2];
+                totalRight += 1;
+                var card3 = document.querySelector(".card3");
+                card3.classList.toggle("is-flipped");
+                points[2] = 0;
+                answers[2] = "null";
+                flip[2] = "null";
+                console.log("Score :", score);
+                Search.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search.value.toUpperCase() == answers[3].toUpperCase()
+              ) {
+                score += points[3];
+                totalScore += points[3];
+                totalRight += 1;
+                var card5 = document.querySelector(".card5");
+                card5.classList.toggle("is-flipped");
+                points[3] = 0;
+                answers[3] = "null";
+                flip[3] = "null";
+                console.log("Score :", score);
+                Search.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search.value.toUpperCase() == answers[4].toUpperCase()
+              ) {
+                score += points[4];
+                totalScore += points[4];
+                totalRight += 1;
+                var card6 = document.querySelector(".card6");
+                card6.classList.toggle("is-flipped");
+                points[4] = 0;
+                answers[4] = "null";
+                flip[4] = "null";
+                console.log("Score :", score);
+                Search.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else {
+                Search.value = "";
+                wrong += 1;
+                totalWrong += 1;
+                console.log("Wrong :", wrong);
+                document.getElementById("wrongAnswer").style.display = "block";
+                setTimeout(function () {
+                  document.getElementById("wrongAnswer").style.display = "none";
+                }, 1500);
+                if (wrong == 2) {
+                  var user_3 = document.getElementById("userInput").value;
+                  var steal = document.getElementById("steal_2");
+                  steal.innerHTML = user_3 + " Can Steal Points";
+                  document.getElementById("warning_2").style.display =
+                    "initial";
+                  document.getElementById("steal_2").style.display = "initial";
+                  setTimeout(function () {
+                    document.getElementById("warning_2").style.display = "none";
+                    document.getElementById("steal_2").style.display = "none";
+                  }, 1500);
+                }
+                if (wrong == 3) {
+                  document.getElementById("search").disabled = true;
+                  document.getElementById("search").disabled;
+                  document.getElementById("Btn").disabled = true;
+                  document.getElementById("Btn").disabled;
+                  document.getElementById("search_2").disabled = false;
+                  document.getElementById("search_2").disabled;
+                  document.getElementById("Btn_2").disabled = false;
+                  document.getElementById("Btn_2").disabled;
+                  wrong = 0;
+                  let timeSecond = 15;
+                  const timeH = document.querySelector("h3");
+
+                  displayTime(timeSecond);
+
+                  const countDown = setInterval(() => {
+                    timeSecond--;
+                    displayTime(timeSecond);
+                    if (timeSecond == 0 || timeSecond < 1) {
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      clearInterval(countDown);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    }
+                  }, 1000);
+
+                  function displayTime(second) {
+                    const sec = Math.floor(second % 60);
+                    timeH.innerHTML = `${sec < 10 ? "0" : ""}${sec}`;
+                  }
+                  document.getElementById("Btn_2").onclick = function () {
+                    if (
+                      Search_2.value.toUpperCase() == answers[0].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      score += points[0];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[0];
+                      totalRight += 1;
+                      var card = document.querySelector(".card");
+                      card.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[0] = 0;
+                      answers[0] = "null";
+                      flip[0] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search_2.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search_2.value.toUpperCase() == answers[1].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      score += points[1];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[1];
+                      totalRight += 1;
+                      var card2 = document.querySelector(".card2");
+                      card2.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card2.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[1] = 0;
+                      answers[1] = "null";
+                      flip[1] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search_2.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search_2.value.toUpperCase() == answers[2].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      score += points[2];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[2];
+                      totalRight += 1;
+                      var card3 = document.querySelector(".card3");
+                      card3.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card3.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[2] = 0;
+                      answers[2] = "null";
+                      flip[2] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search_2.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search_2.value.toUpperCase() == answers[3].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      score += points[3];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[3];
+                      totalRight += 1;
+                      var card5 = document.querySelector(".card5");
+                      card5.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card5.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[3] = 0;
+                      answers[3] = "null";
+                      flip[3] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search_2.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search_2.value.toUpperCase() == answers[4].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      score += points[4];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[4];
+                      totalRight += 1;
+                      var card6 = document.querySelector(".card6");
+                      card6.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card6.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[4] = 0;
+                      answers[4] = "null";
+                      flip[4] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search_2.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else {
+                      Search_2.value = "";
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player -= 1;
+                      document.getElementById("wrongAnswer").style.display =
+                        "block";
+                      setTimeout(function () {
+                        document.getElementById("wrongAnswer").style.display =
+                          "none";
+                        document.getElementById("Input").style.display = "none";
+                        document.getElementById("Input_2").style.display =
+                          "none";
+                        setTimeout(function () {
+                          flipCard();
+                        }, 500);
+                        setTimeout(function () {
+                          w3_open();
+                        }, 6000);
+                      }, 1500);
+                    }
+                  };
+                }
+              }
+
+              // Round Counter + Score Displaying
+              if (round == 1) {
+                RoundContainer_1.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+                _RoundContainer_1.innerHTML = score_2;
+              } else if (round == 2) {
+                RoundContainer_2.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+              } else {
+                RoundContainer_3.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+                round = 0;
+              }
+            }
+          } else {
+            document.getElementById("search").disabled = true;
+            document.getElementById("search").disabled;
+            document.getElementById("Btn").disabled = true;
+            document.getElementById("Btn").disabled;
+            var Search_2 = document.getElementById("search_2");
+            document.getElementById("Btn_2").onclick = function () {
+              SearchDiv();
+            };
+            var Search = document.getElementById("search");
+            // Input Function
+            function SearchDiv() {
+              attemps += 1;
+              console.log("Attemps :", attemps);
+              if (Search_2.value.toUpperCase() == answers[0].toUpperCase()) {
+                score += points[0];
+                totalScore += points[0];
+                totalRight += 1;
+                var card = document.querySelector(".card");
+                card.classList.toggle("is-flipped");
+                points[0] = 0;
+                answers[0] = "null";
+                flip[0] = "null";
+                console.log("Score :", score);
+                Search_2.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search_2.value.toUpperCase() == answers[1].toUpperCase()
+              ) {
+                score += points[1];
+                totalScore += points[1];
+                totalRight += 1;
+                var card2 = document.querySelector(".card2");
+                card2.classList.toggle("is-flipped");
+                points[1] = 0;
+                answers[1] = "null";
+                flip[1] = "null";
+                console.log("Score :", score);
+                Search_2.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search_2.value.toUpperCase() == answers[2].toUpperCase()
+              ) {
+                score += points[2];
+                totalScore += points[2];
+                totalRight += 1;
+                var card3 = document.querySelector(".card3");
+                card3.classList.toggle("is-flipped");
+                points[2] = 0;
+                answers[2] = "null";
+                flip[2] = "null";
+                console.log("Score :", score);
+                Search_2.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search_2.value.toUpperCase() == answers[3].toUpperCase()
+              ) {
+                score += points[3];
+                totalScore += points[3];
+                totalRight += 1;
+                var card5 = document.querySelector(".card5");
+                card5.classList.toggle("is-flipped");
+                points[3] = 0;
+                answers[3] = "null";
+                flip[3] = "null";
+                console.log("Score :", score);
+                Search_2.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else if (
+                Search_2.value.toUpperCase() == answers[4].toUpperCase()
+              ) {
+                score += points[4];
+                totalScore += points[4];
+                totalRight += 1;
+                var card6 = document.querySelector(".card6");
+                card6.classList.toggle("is-flipped");
+                points[4] = 0;
+                answers[4] = "null";
+                flip[4] = "null";
+                console.log("Score :", score);
+                Search_2.value = "";
+                if (totalpoints == score) {
+                  document.getElementById("Input").style.display = "none";
+                  document.getElementById("Input_2").style.display = "none";
+                  setTimeout(function () {
+                    flipCard();
+                  }, 500);
+                  setTimeout(function () {
+                    w3_open();
+                  }, 6000);
+                }
+              } else {
+                Search_2.value = "";
+                wrong += 1;
+                totalWrong += 1;
+                console.log("Wrong :", wrong);
+                document.getElementById("wrongAnswer").style.display = "block";
+                setTimeout(function () {
+                  document.getElementById("wrongAnswer").style.display = "none";
+                }, 1500);
+                if (wrong == 2) {
+                  var user_3 = document.getElementById("Username").value;
+                  var steal = document.getElementById("steal");
+                  steal.innerHTML = user + " Can Steal Points";
+                  document.getElementById("warning").style.display = "initial";
+                  document.getElementById("steal").style.display = "initial";
+                  setTimeout(function () {
+                    document.getElementById("warning").style.display = "none";
+                    document.getElementById("steal").style.display = "none";
+                  }, 1500);
+                }
+                if (wrong == 3) {
+                  document.getElementById("search_2").disabled = true;
+                  document.getElementById("search_2").disabled;
+                  document.getElementById("Btn_2").disabled = true;
+                  document.getElementById("Btn_2").disabled;
+                  document.getElementById("search").disabled = false;
+                  document.getElementById("search").disabled;
+                  document.getElementById("Btn").disabled = false;
+                  document.getElementById("Btn").disabled;
+                  wrong = 0;
+                  let timeSecond = 15;
+                  const timeH = document.querySelector("h3");
+
+                  displayTime(timeSecond);
+
+                  const countDown = setInterval(() => {
+                    timeSecond--;
+                    displayTime(timeSecond);
+                    if (timeSecond == 0 || timeSecond < 1) {
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      clearInterval(countDown);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    }
+                  }, 1000);
+
+                  function displayTime(second) {
+                    const sec = Math.floor(second % 60);
+                    timeH.innerHTML = `${sec < 10 ? "0" : ""}${sec}`;
+                  }
+                  document.getElementById("Btn").onclick = function () {
+                    if (
+                      Search.value.toUpperCase() == answers[0].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      score += points[0];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[0];
+                      totalRight += 1;
+                      var card = document.querySelector(".card");
+                      card.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[0] = 0;
+                      answers[0] = "null";
+                      flip[0] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search.value.toUpperCase() == answers[1].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      score += points[1];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[1];
+                      totalRight += 1;
+                      var card2 = document.querySelector(".card2");
+                      card2.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card2.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[1] = 0;
+                      answers[1] = "null";
+                      flip[1] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search.value.toUpperCase() == answers[2].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      score += points[2];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[2];
+                      totalRight += 1;
+                      var card3 = document.querySelector(".card3");
+                      card3.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card3.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[2] = 0;
+                      answers[2] = "null";
+                      flip[2] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search.value.toUpperCase() == answers[3].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      score += points[3];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[3];
+                      totalRight += 1;
+                      var card5 = document.querySelector(".card5");
+                      card5.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card5.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[3] = 0;
+                      answers[3] = "null";
+                      flip[3] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else if (
+                      Search.value.toUpperCase() == answers[4].toUpperCase()
+                    ) {
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      score += points[4];
+                      score_2 += score;
+                      score = 0;
+                      totalScore += points[4];
+                      totalRight += 1;
+                      var card6 = document.querySelector(".card6");
+                      card6.classList.toggle("is-flipped");
+                      setTimeout(function () {
+                        card6.classList.toggle("is-flipped");
+                      }, 1500);
+                      points[4] = 0;
+                      answers[4] = "null";
+                      flip[4] = "null";
+                      console.log("Score :", score);
+                      console.log("Score 2 :", score_2);
+                      Search.value = "";
+                      pointsContainer.innerHTML = score;
+                      pointsContainer_2.innerHTML = score_2;
+                      document.getElementById("Input").style.display = "none";
+                      document.getElementById("Input_2").style.display = "none";
+                      setTimeout(function () {
+                        flipCard();
+                      }, 500);
+                      setTimeout(function () {
+                        w3_open();
+                      }, 6000);
+                    } else {
+                      Search.value = "";
+                      let timeSecond = 0;
+                      clearInterval(countDown);
+                      displayTime(timeSecond);
+                      player += 1;
+                      document.getElementById("wrongAnswer").style.display =
+                        "block";
+                      setTimeout(function () {
+                        document.getElementById("wrongAnswer").style.display =
+                          "none";
+                        document.getElementById("Input").style.display = "none";
+                        document.getElementById("Input_2").style.display =
+                          "none";
+                        setTimeout(function () {
+                          flipCard();
+                        }, 500);
+                        setTimeout(function () {
+                          w3_open();
+                        }, 6000);
+                      }, 1500);
+                    }
+                  };
+                }
+              }
+
+              // Round Counter + Score Displaying
+              if (round == 1) {
+                RoundContainer_1.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+                _RoundContainer_1.innerHTML = score_2;
+              } else if (round == 2) {
+                RoundContainer_2.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+              } else {
+                RoundContainer_3.innerHTML = score;
+                TotalContainer.innerHTML = totalScore;
+                round = 0;
+              }
+            }
+          }
+        });
+      });
+    }
+
+    // Card Flip Function
+    function flipCard() {
+      if (flip[4] != "null") {
+        var card6 = document.querySelector(".card6");
+        card6.classList.toggle("is-flipped");
+      } else {
+        flip.splice(4, 1);
+      }
+      if (flip[3] != "null") {
+        setTimeout(function () {
+          var card5 = document.querySelector(".card5");
+          card5.classList.toggle("is-flipped");
+        }, 1050);
+      } else {
+        flip.splice(3, 1);
+      }
+      if (flip[2] != "null") {
+        setTimeout(function () {
+          var card3 = document.querySelector(".card3");
+          card3.classList.toggle("is-flipped");
+        }, 2100);
+      } else {
+        flip.splice(2, 1);
+      }
+      if (flip[1] != "null") {
+        setTimeout(function () {
+          var card2 = document.querySelector(".card2");
+          card2.classList.toggle("is-flipped");
+        }, 3150);
+      } else {
+        flip.splice(1, 1);
+      }
+      if (flip[0] != "null") {
+        setTimeout(function () {
+          var card = document.querySelector(".card");
+          card.classList.toggle("is-flipped");
+        }, 4200);
+      } else {
+        flip.splice(0, 1);
+      }
+    }
+
+    // Result Window Open Function
+    function w3_open() {
+      document.getElementById("mySidebar").style.width = "100%";
+      document.getElementById("mySidebar").style.display = "block";
+    }
+
+    // Result Window Close Function
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+
+    document.getElementById("NEXT").onclick = function () {
+      Round_2();
+    };
+
+    // Next Round Function
+    function Round_2() {
+      test += 1;
+      if (test == 1) {
+        InsertData();
+        flipCard();
+        document.getElementById("NEXT").style.display = "none";
+        document.getElementById("OneMoment").style.display = "block";
+        setTimeout(function () {
+          w3_close();
+          document.getElementById("OneMoment").style.display = "none";
+          document.getElementById("NEXT").style.display = "initial";
+          document.getElementById("Input").style.display = "flex";
+          document.getElementById("Input_2").style.display = "flex";
+          GetAllDataOnce();
+        }, 6000);
+      } else if (test == 2) {
+        InsertData();
+        flipCard();
+        document.getElementById("NEXT").style.display = "none";
+        document.getElementById("OneMoment").style.display = "block";
+        setTimeout(function () {
+          w3_close();
+          document.getElementById("OneMoment").style.display = "none";
+          document.getElementById("NEXT").style.display = "initial";
+          document.getElementById("Input").style.display = "flex";
+          document.getElementById("Input_2").style.display = "flex";
+          GetAllDataOnce();
+        }, 6000);
+      } else if (test == 3) {
+        InsertData();
+        flipCard();
+        document.getElementById("NEXT").style.display = "none";
+        document.getElementById("OneMoment").style.display = "block";
+        setTimeout(function () {
+          document.getElementById("OneMoment").style.display = "none";
+          document.getElementById("END").style.display = "initial";
+        }, 6000);
+      }
+
+      return test;
+    }
+
+    var btn = 0;
+    var insertBtn = document.querySelector("#LAST_ROUND");
+    const dbRef = ref(db);
+
+    // Inserting Data To Firebase
+    function InsertData() {
+      var game = round / 3;
+      btn += 1;
+      if (btn == 3) {
+        var avg_score = totalScore / game;
+        userData[7] += attemps;
+        userData[8] += avg_score;
+        userData[10] += 1;
+        userData[11] += totalRight;
+        userData[12] += totalWrong;
+        userData[13] += totalScore;
+        btn = 0;
+      }
+      setTimeout(function () {
+        get(child(dbRef, "Users/" + user)).then((snapshot) => {
+          if (snapshot.exists()) {
+            set(ref(db, "Users/" + user), {
+              CurrentMode: 1
+            });
+            set(ref(db, "Users/" + user + "/Mode 2"), {
+              Games_Played: userData[10],
+              Total_Score: userData[13],
+              Avg_Score: userData[8],
+              Attemps: userData[7],
+              Number_Wrong: userData[12],
+              Number_Right: userData[11],
+              CurrentMode: "Yes"
+            });
+            set(ref(db, "Users/" + user + "/Mode 1"), {
+              Games_Played: userData_M2[3],
+              Total_Score: userData_M2[6],
+              Avg_Score: userData_M2[1],
+              Attemps: userData_M2[0],
+              Number_Wrong: userData_M2[5],
+              Number_Right: userData_M2[4],
+              CurrentMode: "No"
+            });
+          } else {
+            set(ref(db, "Users/" + user), {
+              CurrentMode: 1
+            });
+            set(ref(db, "Users/" + user + "/Mode 1"), {
+              Games_Played: 0,
+              Total_Score: 0,
+              Avg_Score: 0,
+              Attemps: 0,
+              Number_Wrong: 0,
+              Number_Right: 0,
+              CurrentMode: "Yes"
+            });
+            set(ref(db, "Users/" + user + "/Mode 2"), {
+              Games_Played: 0,
+              Total_Score: 0,
+              Avg_Score: 0,
+              Attemps: 0,
+              Number_Wrong: 0,
+              Number_Right: 0,
+              CurrentMode: "No"
+            });
+          }
+        });
+      }, 1000);
+    }
+    insertBtn.addEventListener("click", InsertData);
+
+    window.onload = SelectPlayer_open();
+
+    function SelectPlayer_open() {
+      document.getElementById("SelectPlayer").style.width = "100%";
+      document.getElementById("SelectPlayer").style.display = "block";
+    }
+  </script>
+</html>

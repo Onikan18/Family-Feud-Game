@@ -1,0 +1,71 @@
+.w3-sidebar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  opacity: 25%;
+  position: fixed !important;
+  z-index: -1;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: #fefdff;
+}
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  background-color: #00010d;
+  opacity: 85%;
+  position: fixed !important;
+  z-index: 1;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: #fefdff;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: black;
+}
+
+#enterDetails {
+  float: center;
+  width: 50%;
+  background-color: white;
+  color: #07041e;
+  border-style: solid;
+  border-width: 15px;
+  border-color: #07041e;
+}
+
+input {
+  width: 120px;
+}
+
+button {
+  height: 60px;
+  color: #fefdff;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(#024191, #016ad7);
+  padding: 20px;
+  border-radius: 10px 10px 10px 10px;
+  border-style: transparent;
+  border-width: 2px;
+  border-color: #73916a;
+}
+
+a {
+  font-size: 16px bold;
+  color: #fefdff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.plot.ly/plotly-2.18.0.min.js"></script>
+    <link rel="stylesheet" href="statistics.css" />
+  </head>
+  <body>
+    <div class="w3-sidebar" style="display: none;" id="SelectPlayer">
+      <br />
+    </div>
+    <div id="Input" class="S_Border">
+      <input id="findID" />
+      <button id="show">SUBMIT</button>
+    </div>
+    <button id="find" class="_1" style="display: none;">DISPLAY</button>
+    <div id="myDiv" style="display: inline-block;"></div>
+    <div id="myFDiv" style="display: inline-block;"></div>
+    <script type="module">
+      window.onload = SelectPlayer_open();
+
+      function SelectPlayer_open() {
+        document.getElementById("SelectPlayer").style.width = "100%";
+        document.getElementById("SelectPlayer").style.display = "block";
+      }
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDAtnJ5-d2crqMxannr5Y2zz0Ix6Gm7XTI",
+        authDomain: "familyfeud-94e54.firebaseapp.com",
+        databaseURL: "https://familyfeud-94e54-default-rtdb.firebaseio.com",
+        projectId: "familyfeud-94e54",
+        storageBucket: "familyfeud-94e54.appspot.com",
+        messagingSenderId: "340874094709",
+        appId: "1:340874094709:web:9b70b0b016cfb4e12b303c"
+      };
+
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        get,
+        set,
+        child,
+        update,
+        remove
+      } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
+
+      const db = getDatabase();
+
+      var findID = document.querySelector("#findID");
+
+      function FindData(attemps) {
+        const dbref = ref(db);
+        get(child(dbref, "Users/" + findID.value + "/Mode 1")).then(
+          (snapshot) => {
+            if (snapshot.exists()) {
+              window.avg_Score = snapshot.val().Avg_Score;
+              window.attemps = snapshot.val().Attemps;
+              window.numberRight = snapshot.val().Number_Right;
+              window.numberWrong = snapshot.val().Number_Wrong;
+            } else {
+              alert("No " + findID.value + " Found For Singleplayer");
+            }
+          }
+        );
+        get(child(dbref, "Users/" + findID.value + "/Mode 2")).then(
+          (snapshot) => {
+            if (snapshot.exists()) {
+              window.avg_Score2 = snapshot.val().Avg_Score;
+              window.attemps2 = snapshot.val().Attemps;
+              window.numberRight2 = snapshot.val().Number_Right;
+              window.numberWrong2 = snapshot.val().Number_Wrong;
+            } else {
+              alert("No " + findID.value + " Found For Multiplayer");
+            }
+          }
+        );
+
+        var trace1 = {
+          x: ["Mode 1", "Mode 2"],
+          y: [window.avg_Score, window.avg_Score2],
+          name: "Average Score",
+          type: "bar"
+        };
+
+        var trace2 = {
+          x: ["Mode 1", "Mode 2"],
+          y: [window.attemps, window.attemps2],
+          name: "Number Of Attemps",
+          type: "bar"
+        };
+
+        var data = [trace1, trace2];
+
+        var layout = {
+          autosize: false,
+          width: 600,
+          height: 600,
+          barmode: "group",
+          title: "Average Score"
+        };
+
+        Plotly.newPlot("myDiv", data, layout);
+
+        var Ftrace1 = {
+          x: ["Mode 1", "Mode 2"],
+          y: [window.numberRight, window.numberRight2],
+          name: "Number Right",
+          type: "bar"
+        };
+
+        var Ftrace2 = {
+          x: ["Mode 1", "Mode 2"],
+          y: [window.numberWrong, window.numberWrong2],
+          name: "Number Wrong",
+          type: "bar"
+        };
+
+        var Fdata = [Ftrace1, Ftrace2];
+
+        var Flayout = {
+          autosize: false,
+          width: 600,
+          height: 600,
+          barmode: "group",
+          title: "Frequency Right / Wrong"
+        };
+
+        Plotly.newPlot("myFDiv", Fdata, Flayout);
+      }
+
+      document.getElementById("show").onclick = function () {
+        document.getElementById("Input").style.display = "none";
+        FindData();
+        document.getElementById("find").style.display = "block";
+        document.getElementById("find").onclick = function () {
+          FindData();
+        };
+      };
+    </script>
+  </body>
+</html>

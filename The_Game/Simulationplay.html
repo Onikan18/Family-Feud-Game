@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Family Feud : Simulation-Play</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Simulation.css" />
+  </head>
+  <body>
+    <!-- Start Screen -->
+    <div class="w3-sidebar" style="display: none;" id="SelectPlayer">
+      <br />
+      <br />
+      <h1>FAMILY FEUD : SIMULATION</h1>
+      <br />
+      <br />
+      <h2>WOULD YOU LIKE TO CHANGE THE GAME PARAMETERS</h2>
+      <br />
+      <button id="YES">YES</button>
+      <button id="NO">NO</button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <h2 id="HYPOTHESIS_1" style="display: none;">
+        GAME DIFFICULTY HAS BEEN CHANGED
+      </h2>
+      <br />
+      <br />
+      <h2 id="HYPOTHESIS_2" style="display: none;">
+        YOU WILL START THE GAME WITH A RANDOM SCORE BETWEEN -100 AND 0
+      </h2>
+      <br />
+      <br />
+      <br />
+      <br />
+      <button style="display: none;" id="START">START ROUND</button>
+    </div>
+    <!-- Username -->
+    <div id="Username" class="username"></div>
+    <!-- Question Container -->
+    <div id="Question" class="QuestionBoard"></div>
+    <div id="Stats" class="Stats">
+      <h2>Formula :</h2>
+      <h2>---</h2>
+      <h2>Number Right :</h2>
+      <h2 id="No_Right">---</h2>
+      <h2>Attemps :</h2>
+      <h2 id="No_Attemps">---</h2>
+      <h2>Percentage :</h2>
+      <h2 id="Percentage">---</h2>
+      <button id="LAST_ROUND">Calculate</button>
+    </div>
+
+    <div id="vl" class="vl" style="display: none;"></div>
+    <div id="Bg" class="Background_1" style="display: none;">
+      <!-- Game Wheel -->
+      <div class="BackBoard">
+        <div class="Outline Nleft"></div>
+        <div class="Outline Nright"></div>
+        <div class="_gameBoard">
+          <div class="gameBoard"></div>
+          <!-- Family Feud Cards-->
+          <div class="familyFeudCard _right">
+            <img
+              class="right"
+              src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg"
+            />
+          </div>
+          <div class="familyFeudCard _left">
+            <img class="left" src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg" />
+          </div>
+          <img class="top" src="35806A40-4C20-444F-962D-6EE4F0E296A1.jpeg" />
+          <div class="BackCard"></div>
+          <div id="answerCard" class="answerCard">
+            <!-- Answercards (Front + Back) -->
+            <section class="flipping">
+              <div class="scene">
+                <div class="card">
+                  <div class="answercard card__face--front _1"></div>
+                  <div class="numbercard _1--">1</div>
+                  <div
+                    id="back_1"
+                    class="answercard card__face--back _1_"
+                  ></div>
+                  <div id="back_1_" class="pointscard _1-"></div>
+                </div>
+                <br />
+                <div class="card2">
+                  <div class="answercard2 card__face--front2 _2"></div>
+                  <div class="numbercard2 _2--">2</div>
+                  <div
+                    id="back_2"
+                    class="answercard2 card__face--back2 _2_"
+                  ></div>
+                  <div id="back_2_" class="pointscard2 _2-"></div>
+                </div>
+                <br />
+                <div class="card3">
+                  <div class="answercard3 card__face--front3 _3"></div>
+                  <div class="numbercard3 _3--">3</div>
+                  <div
+                    id="back_3"
+                    class="answercard3 card__face--back3 _3_"
+                  ></div>
+                  <div id="back_3_" class="pointscard3 _3-"></div>
+                </div>
+                <br />
+                <div class="card4">
+                  <div class="answercard4 card__face--front4 _4"></div>
+                  <div class="answercard4 card__face--back4 _4_"></div>
+                </div>
+              </div>
+              <br />
+              <div class="scene2">
+                <div class="card5">
+                  <div class="answercard5 card__face--front5 _5"></div>
+                  <div class="numbercard5 _5--">4</div>
+                  <div
+                    id="back_5"
+                    class="answercard5 card__face--back5 _5_"
+                  ></div>
+                  <div id="back_5_" class="pointscard5 _5-"></div>
+                </div>
+                <br />
+                <div class="card6">
+                  <div class="answercard6 card__face--front6 _6"></div>
+                  <div class="numbercard6 _6--">5</div>
+                  <div
+                    id="back_6"
+                    class="answercard6 card__face--back6 _6_"
+                  ></div>
+                  <div id="back_6_" class="pointscard6 _6-"></div>
+                </div>
+                <br />
+                <div class="card7">
+                  <div class="answercard7 card__face--front7 _7"></div>
+                  <div class="answercard7 card__face--back7 _7_"></div>
+                </div>
+                <br />
+                <div class="card8">
+                  <div class="answercard8 card__face--front8 _8"></div>
+                  <div class="answercard8 card__face--back8 _8_"></div>
+                </div>
+              </div>
+              <br />
+            </section>
+            <!-- Incorrect Answer Cross-->
+            <div id="wrongAnswer" class="box" style="display: none;">
+              <div class="cross"></div>
+            </div>
+            <!-- Round Points -->
+            <div class="points">
+              <h1 id="points"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Result Window -->
+    <div class="w3-sidebar" style="display: none;" id="mySidebar">
+      <br />
+      <br />
+      <h2>SIMULATION OVER</h2>
+      <br />
+      <br />
+      <button id="NEXT">
+        <a href="/index.html" id="LAST_ROUND">END GAME</a>
+      </button>
+    </div>
+    <script type="module">
+      const user = JSON.parse(localStorage.getItem("myObject"));
+      document.getElementById("Username").innerHTML = user;
+      console.log(user);
+
+      document.getElementById("YES").onclick = function () {
+        document.getElementById("HYPOTHESIS_1").style.display = "initial";
+        document.getElementById("HYPOTHESIS_2").style.display = "initial";
+        document.getElementById("START").style.display = "initial";
+        document.getElementById("START").onclick = function () {
+          document.getElementById("SelectPlayer").style.display = "none";
+          var whatIf = Math.floor(Math.random() * 99) - 100;
+          score = whatIf;
+          pointsContainer.innerHTML = score;
+          console.log(score);
+          console.log(whatIf);
+          GetAllDataOnce();
+        };
+      };
+
+      document.getElementById("NO").onclick = function () {
+        document.getElementById("SelectPlayer").style.display = "none";
+        pointsContainer.innerHTML = 0;
+        GetAllDataOnce();
+      };
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDAtnJ5-d2crqMxannr5Y2zz0Ix6Gm7XTI",
+        authDomain: "familyfeud-94e54.firebaseapp.com",
+        databaseURL: "https://familyfeud-94e54-default-rtdb.firebaseio.com",
+        projectId: "familyfeud-94e54",
+        storageBucket: "familyfeud-94e54.appspot.com",
+        messagingSenderId: "340874094709",
+        appId: "1:340874094709:web:9b70b0b016cfb4e12b303c"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        child,
+        onValue,
+        get
+      } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+      const db = getDatabase();
+
+      var question = [];
+      var userData = [];
+      var userData_M2 = [];
+      var userData_M3 = [];
+      var score = 0;
+      var hypothesis = 0;
+      var q_div = document.getElementById("Question");
+      var answer_div_1 = document.getElementById("back_1");
+      var answer_div_2 = document.getElementById("back_2");
+      var answer_div_3 = document.getElementById("back_3");
+      var answer_div_4 = document.getElementById("back_5");
+      var answer_div_5 = document.getElementById("back_6");
+      var points_div_1 = document.getElementById("back_1_");
+      var points_div_2 = document.getElementById("back_2_");
+      var points_div_3 = document.getElementById("back_3_");
+      var points_div_4 = document.getElementById("back_5_");
+      var points_div_5 = document.getElementById("back_6_");
+      var pointsContainer = document.getElementById("points");
+      var numberRight = document.getElementById("No_Right");
+      var numberAttemps = document.getElementById("No_Attemps");
+      var percentage = document.getElementById("Percentage");
+
+      function GetAllDataOnce() {
+        var random = Math.floor(Math.random() * 50) + 0;
+        const dbRef = ref(db);
+        var answers = [];
+        var points = [];
+        get(child(dbRef, "Users/" + user + "/Mode 1")).then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            userData.push(childSnapshot.val());
+          });
+        });
+        get(child(dbRef, "Users/" + user + "/Mode 2")).then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            userData_M3.push(childSnapshot.val());
+          });
+        });
+        get(child(dbRef, "Users/" + user + "/Mode 3")).then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            userData_M2.push(childSnapshot.val());
+          });
+        });
+        get(child(dbRef, "Questions")).then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            question.push(childSnapshot.key);
+          });
+          console.log(question[random]);
+          q_div.innerHTML = question[random];
+          get(child(dbRef, "Questions/" + question[random])).then(
+            (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                points.push(childSnapshot.val());
+                answers.push(childSnapshot.key);
+              });
+              // Sorting Answers Numerically
+              for (var i = 0; i < points.length; i++) {
+                for (var j = 0; j < points.length - i - 1; j++) {
+                  if (points[j] < points[j + 1]) {
+                    var tempValue = points[j];
+                    points[j] = points[j + 1];
+                    points[j + 1] = tempValue;
+                    var tempValue_1 = answers[j];
+                    answers[j] = answers[j + 1];
+                    answers[j + 1] = tempValue_1;
+                  }
+                }
+              }
+              console.log(answers, points);
+              answer_div_1.innerHTML = answers[0].toUpperCase();
+              answer_div_2.innerHTML = answers[1].toUpperCase();
+              answer_div_3.innerHTML = answers[2].toUpperCase();
+              answer_div_4.innerHTML = answers[3].toUpperCase();
+              answer_div_5.innerHTML = answers[4].toUpperCase();
+              points_div_1.innerHTML = points[0];
+              points_div_2.innerHTML = points[1];
+              points_div_3.innerHTML = points[2];
+              points_div_4.innerHTML = points[3];
+              points_div_5.innerHTML = points[4];
+
+              var insertBtn = document.querySelector("#LAST_ROUND");
+
+              function InsertData() {
+                var totalRight = userData[4];
+                var attemps = userData[0];
+                var fraction = totalRight / attemps;
+                var precent = fraction * 100;
+                var precent_2 = Math.round(precent);
+                numberRight.innerHTML = totalRight;
+                setTimeout(function () {
+                  numberAttemps.innerHTML = attemps;
+                }, 500);
+                setTimeout(function () {
+                  percentage.innerHTML = precent_2 + "%";
+                }, 1000);
+                setTimeout(function () {
+                  var q = (document.getElementById("Question").style.width =
+                    "500px");
+                  var q_2 = (document.getElementById(
+                    "Question"
+                  ).style.fontSize = "15px");
+                  var q_3 = (document.getElementById("Question").style.left =
+                    "10px");
+                  var name = (document.getElementById("Username").style.left =
+                    "165px");
+                  var vl = (document.getElementById("vl").style.display =
+                    "block");
+                  var stats = (document.getElementById("Stats").style.left =
+                    "15%");
+                  var calculate = (document.getElementById("Bg").style.display =
+                    "block");
+                  var btn = (document.getElementById(
+                    "LAST_ROUND"
+                  ).style.display = "none");
+                }, 1500);
+                setTimeout(function () {
+                  var probability = precent / 100;
+                  var random = probability;
+                  const rand = Boolean(Math.round(Math.random() < random));
+                  console.log(rand);
+                  if (rand == true) {
+                    score += points[4];
+                    pointsContainer.innerHTML = score;
+                    var card6 = document.querySelector(".card6");
+                    card6.classList.toggle("is-flipped");
+                    console.log(score);
+                    const rand = Boolean(Math.round(Math.random() < random));
+                    console.log(rand);
+                    if (rand == true) {
+                      setTimeout(function () {
+                        score += points[3];
+                        pointsContainer.innerHTML = score;
+                        var card5 = document.querySelector(".card5");
+                        card5.classList.toggle("is-flipped");
+                        console.log(score);
+                      }, 1000);
+                      const rand = Boolean(Math.round(Math.random() < random));
+                      console.log(rand);
+                      if (rand == true) {
+                        setTimeout(function () {
+                          score += points[2];
+                          pointsContainer.innerHTML = score;
+                          var card3 = document.querySelector(".card3");
+                          card3.classList.toggle("is-flipped");
+                          console.log(score);
+                        }, 1500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      } else {
+                        document.getElementById("wrongAnswer").style.display =
+                          "block";
+                        setTimeout(function () {
+                          document.getElementById("wrongAnswer").style.display =
+                            "none";
+                        }, 500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      }
+                    } else {
+                      document.getElementById("wrongAnswer").style.display =
+                        "block";
+                      setTimeout(function () {
+                        document.getElementById("wrongAnswer").style.display =
+                          "none";
+                      }, 500);
+                      const rand = Boolean(Math.round(Math.random() < random));
+                      console.log(rand);
+                      if (rand == true) {
+                        setTimeout(function () {
+                          score += points[2];
+                          pointsContainer.innerHTML = score;
+                          var card3 = document.querySelector(".card3");
+                          card3.classList.toggle("is-flipped");
+                          console.log(score);
+                        }, 1500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      } else {
+                        document.getElementById("wrongAnswer").style.display =
+                          "block";
+                        setTimeout(function () {
+                          document.getElementById("wrongAnswer").style.display =
+                            "none";
+                        }, 500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      }
+                    }
+                  } else {
+                    document.getElementById("wrongAnswer").style.display =
+                      "block";
+                    setTimeout(function () {
+                      document.getElementById("wrongAnswer").style.display =
+                        "none";
+                    }, 500);
+                    const rand = Boolean(Math.round(Math.random() < random));
+                    console.log(rand);
+                    if (rand == true) {
+                      setTimeout(function () {
+                        score += points[3];
+                        pointsContainer.innerHTML = score;
+                        var card5 = document.querySelector(".card5");
+                        card5.classList.toggle("is-flipped");
+                        console.log(score);
+                      }, 1000);
+                      const rand = Boolean(Math.round(Math.random() < random));
+                      console.log(rand);
+                      if (rand == true) {
+                        setTimeout(function () {
+                          score += points[2];
+                          pointsContainer.innerHTML = score;
+                          var card3 = document.querySelector(".card3");
+                          card3.classList.toggle("is-flipped");
+                          console.log(score);
+                        }, 1500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      } else {
+                        document.getElementById("wrongAnswer").style.display =
+                          "block";
+                        setTimeout(function () {
+                          document.getElementById("wrongAnswer").style.display =
+                            "none";
+                        }, 500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      }
+                    } else {
+                      document.getElementById("wrongAnswer").style.display =
+                        "block";
+                      setTimeout(function () {
+                        document.getElementById("wrongAnswer").style.display =
+                          "none";
+                      }, 500);
+                      const rand = Boolean(Math.round(Math.random() < random));
+                      console.log(rand);
+                      if (rand == true) {
+                        setTimeout(function () {
+                          score += points[2];
+                          pointsContainer.innerHTML = score;
+                          var card3 = document.querySelector(".card3");
+                          card3.classList.toggle("is-flipped");
+                          console.log(score);
+                        }, 1500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      } else {
+                        document.getElementById("wrongAnswer").style.display =
+                          "block";
+                        setTimeout(function () {
+                          document.getElementById("wrongAnswer").style.display =
+                            "none";
+                        }, 500);
+                        const rand = Boolean(
+                          Math.round(Math.random() < random)
+                        );
+                        console.log(rand);
+                        if (rand == true) {
+                          setTimeout(function () {
+                            score += points[1];
+                            pointsContainer.innerHTML = score;
+                            var card2 = document.querySelector(".card2");
+                            card2.classList.toggle("is-flipped");
+                            console.log(score);
+                          }, 2000);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        } else {
+                          document.getElementById("wrongAnswer").style.display =
+                            "block";
+                          setTimeout(function () {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "none";
+                          }, 500);
+                          console.log(score);
+                          const rand = Boolean(
+                            Math.round(Math.random() < random)
+                          );
+                          console.log(rand);
+                          if (rand == true) {
+                            setTimeout(function () {
+                              score += points[0];
+                              pointsContainer.innerHTML = score;
+                              var card = document.querySelector(".card");
+                              card.classList.toggle("is-flipped");
+                              console.log(score);
+                            }, 2500);
+                          } else {
+                            document.getElementById(
+                              "wrongAnswer"
+                            ).style.display = "block";
+                            setTimeout(function () {
+                              document.getElementById(
+                                "wrongAnswer"
+                              ).style.display = "none";
+                            }, 500);
+                            // DELETE THIS !!!
+                          }
+                        }
+                      }
+                    }
+                  }
+                  setTimeout(function () {
+                    // END GAME Window Open Function
+                    function w3_open() {
+                      document.getElementById("mySidebar").style.width = "100%";
+                      document.getElementById("mySidebar").style.height =
+                        "100%";
+                      document.getElementById("mySidebar").style.display =
+                        "block";
+                    }
+                    w3_open();
+                  }, 5000);
+                }, 2500);
+              }
+
+              insertBtn.addEventListener("click", InsertData);
+            }
+          );
+        });
+      }
+
+      window.onload = SelectPlayer_open();
+
+      function SelectPlayer_open() {
+        document.getElementById("SelectPlayer").style.width = "100%";
+        document.getElementById("SelectPlayer").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
